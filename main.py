@@ -78,7 +78,7 @@ def main():
             else:
                 print(kitty_a.play_with(kitty_b))
 
-        time.sleep(0.1)
+        time.sleep(5)
         timestamp += 5
 
         for cat in cats:
