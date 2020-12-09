@@ -7,6 +7,7 @@ MAX_CATS = 5
 
 
 class Cat:
+    player_relation = 0
     birthday = 0
     age = 0
     sex = 'N'
@@ -54,11 +55,34 @@ class Cat:
                 """
 
 
-def main():
-    count = 0
-    cats = []
+class Player:
+    name = ''
+
+    friends = []
+
+    def __init__(self):
+        self.name = input("What is your name?").strip().capitalize()
+
+    def check_friend(self, kitty: Cat):
+        if kitty.player_relation > 10:
+            self.friends.append(kitty)
+            return f"{kitty.name} is now your friend! <3"
+        return ""
+
+    def feed(self, kitty: Cat):
+        kitty.player_relation += 1
+        return f"You fed {kitty.name}.\n{kitty.eat()}\n{self.check_friend(kitty)}"
+
+    def play_with(self, kitty: Cat):
+        kitty.player_relation += 1
+        return f"You played with {kitty.name}.\n{kitty.play_with(self)}\n{self.check_friend(kitty)}"
+
+
+def cat_loop(duration, cats):
+    count = len(cats)
     global timestamp
-    while True:
+    extra = timestamp + duration
+    while timestamp < extra:
 
         rand = random.randint(0, 100)
         if (rand < 5 or count == 0) and count < MAX_CATS:
@@ -84,6 +108,26 @@ def main():
         for cat in cats:
             if (timestamp - cat.birthday) % 100 == 0:
                 print(cat.happy_birthday())
+
+    return cats
+
+
+def main():
+    cats = []
+
+    player = Player()
+    print(f"Welcome to your cat house, {player.name}!")
+    while True:
+        cats = cat_loop(5, cats)
+        desire = input("What would you like to do? You can feed a kitty, play with one, or just watch them.\n")
+        if desire.lower().startswith("feed"):
+            print(player.feed(random.choice(cats)))
+        elif desire.lower().startswith("play"):
+            print(player.play_with(random.choice(cats)))
+        elif desire.lower().startswith("watch"):
+            cats = cat_loop(10, cats)
+        else:
+            print("I didnt catch that. Lets watch them!")
 
 
 if __name__ == '__main__':
