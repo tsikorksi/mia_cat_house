@@ -47,12 +47,20 @@ class Cat:
 
     def play(self):
         games = ["feathers", "bells", "you", 'a rubber mouse', "a cardboard box", "yarn"]
-        return f"{self.name} is playing with {random.choice(games)}"
+        return f"""{self.name} is playing with {random.choice(games)}
+                     |\__/,|   (`
+                   _.|o o  |_   ) )
+                  -(((---(((--------"""
 
     def play_with(self, partner):
         games = ['chasing a ball', "playing on a cat tree", "playing with yarn", "play fighting"]
         return f"{self.name} is playing with {partner.name}. " \
-               f"They are {random.choice(games)}!\n{self.check_friend(partner)}"
+               f"""They are {random.choice(games)}!\n{self.check_friend(partner)}
+                           __..--''``---....___   _..._    __
+                 /// //_.-'    .-/";  `        ``<._  ``.''_ `. / // /
+                ///_.-' _..--.'_    \                    `( ) ) // //
+                / (_..-' // (< _     ;_..__               ; `' / ///
+                 / // // //  `-._,_)' // / ``--...____..-' /// / //"""
 
     def eat(self):
         food, emotion = random.choice(list(self.food.items()))
