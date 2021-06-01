@@ -17,7 +17,7 @@ class Cat:
     friends = []
 
     def __init__(self):
-        self.birthday = timestamp
+        self.birthday = time.time()
         self.sex = random.choice(["F", "M"])
         self.name = random.choice(open('names.txt', 'r').readlines()).strip()
         self.breed = random.choice(open('breeds.txt', 'r').readlines()).strip()
@@ -95,17 +95,17 @@ class Player:
 
     def feed(self, kitty: Cat):
         kitty.player_relation += 1
-        return f"You fed {kitty.name}.\n{kitty.eat()}\n{kitty.check_friend(self)}"
+        return f"\nYou fed {kitty.name}.\n{kitty.eat()}\n{kitty.check_friend(self)}"
 
     def play_with(self, kitty: Cat):
         kitty.player_relation += 1
-        return f"You played with {kitty.name}.\n{kitty.play_with(self)}\n{kitty.check_friend(self)}"
+        return f"\nYou played with {kitty.name}.\n{kitty.play_with(self)}\n{kitty.check_friend(self)}"
 
     def bring_item(self, kitty: Cat):
         kitty.player_relation += 1
         items = ["piece of string", "spare treat", "quarter", "dead bug. Ew!", "ball", "hair tie", " piece of trash",
                  "plushie"]
-        return f"{kitty.name} brought you a {random.choice(items)}.\n{kitty.check_friend(self)}"
+        return f"\n{kitty.name} brought you a {random.choice(items)}.\n{kitty.check_friend(self)}"
 
 
 def cat_loop(duration, cats):
@@ -138,13 +138,13 @@ def cat_loop(duration, cats):
         timestamp += 5
 
         for cat in cats:
-            if (timestamp - cat.birthday) % 100 == 0:
+            if (time.time() - cat.birthday) > 600:
                 print(cat.happy_birthday())
 
     return cats
 
 
-def main():
+if __name__ == '__main__':
     cats = []
 
     player = Player()
@@ -163,7 +163,3 @@ def main():
             cats = cat_loop(10, cats)
         else:
             print("I didnt catch that. Lets watch them!")
-
-
-if __name__ == '__main__':
-    main()
