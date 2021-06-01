@@ -14,6 +14,7 @@ class Cat:
     breed = ''
     name = ''
     food = {"salmon": "", "cat food": "", 'chicken': "", "mouse": "", "peppers": "", "tuna": ""}
+    friends = []
 
     def __init__(self):
         self.birthday = timestamp
@@ -34,13 +35,24 @@ class Cat:
                      (  =(^Y^)=
                   ____\_(m___m)_______"""
 
+    def check_friend(self, entity):
+        if random.randint(0, 100) > 90 and entity not in self.friends:
+            self.friends.append(entity)
+            entity.friends.append(self)
+            if type(entity) == Player:
+                return f"{entity.name} is now your friend! <3"
+            else:
+                return f"{entity.name} and {self.name} are now friends!"
+        return ""
+
     def play(self):
         games = ["feathers", "bells", "you", 'a rubber mouse', "a cardboard box", "yarn"]
         return f"{self.name} is playing with {random.choice(games)}"
 
     def play_with(self, partner):
         games = ['chasing a ball', "playing on a cat tree", "playing with yarn", "play fighting"]
-        return f"{self.name} is playing with {partner.name}. They are {random.choice(games)}!"
+        return f"{self.name} is playing with {partner.name}. " \
+               f"They are {random.choice(games)}!\n{self.check_friend(partner)}"
 
     def eat(self):
         food, emotion = random.choice(list(self.food.items()))
@@ -63,19 +75,13 @@ class Player:
     def __init__(self):
         self.name = input("What is your name?").strip().capitalize()
 
-    def check_friend(self, kitty: Cat):
-        if kitty.player_relation > 10:
-            self.friends.append(kitty)
-            return f"{kitty.name} is now your friend! <3"
-        return ""
-
     def feed(self, kitty: Cat):
         kitty.player_relation += 1
-        return f"You fed {kitty.name}.\n{kitty.eat()}\n{self.check_friend(kitty)}"
+        return f"You fed {kitty.name}.\n{kitty.eat()}\n{kitty.check_friend(self)}"
 
     def play_with(self, kitty: Cat):
         kitty.player_relation += 1
-        return f"You played with {kitty.name}.\n{kitty.play_with(self)}\n{self.check_friend(kitty)}"
+        return f"You played with {kitty.name}.\n{kitty.play_with(self)}\n{kitty.check_friend(self)}"
 
 
 def cat_loop(duration, cats):
