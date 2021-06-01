@@ -31,9 +31,9 @@ class Cat:
     def happy_birthday(self):
         self.age += 1
         return f"""It is {self.name}'s birthday! Yay! They are now {self.age}.
-                         (\_/)
+                         (\\_/)
                      (  =(^Y^)=
-                  ____\_(m___m)_______"""
+                  ____\\_(m___m)_______"""
 
     def check_friend(self, entity):
         if random.randint(0, 100) > 90 and entity not in self.friends:
@@ -48,7 +48,7 @@ class Cat:
     def play(self):
         games = ["feathers", "bells", "you", 'a rubber mouse', "a cardboard box", "yarn"]
         return f"""{self.name} is playing with {random.choice(games)}
-                     |\__/,|   (`
+                     |\\__/,|   (`
                    _.|o o  |_   ) )
                   -(((---(((--------"""
 
@@ -58,7 +58,7 @@ class Cat:
                f"""They are {random.choice(games)}!\n{self.check_friend(partner)}
                            __..--''``---....___   _..._    __
                  /// //_.-'    .-/";  `        ``<._  ``.''_ `. / // /
-                ///_.-' _..--.'_    \                    `( ) ) // //
+                ///_.-' _..--.'_    /                    `( ) ) // //
                 / (_..-' // (< _     ;_..__               ; `' / ///
                  / // // //  `-._,_)' // / ``--...____..-' /// / //"""
 
@@ -68,10 +68,10 @@ class Cat:
 
     def nap(self):
         return f"""{self.name} is taking a nap.
-                      |\      _,,,---,,_
+                      |\\      _,,,---,,_
                 ZZZzz /,`.-'`'    -.  ;-;;,_
-                     |,4-  ) )-,_. ,\ (  `'-'
-                    '---''(_/--'  `-'\_)  
+                     |,4-  ) )-,_. ,\\ (  `'-'
+                    '---''(_/--'  `-'\\_)  
                 """
 
 
