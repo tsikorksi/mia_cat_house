@@ -42,7 +42,13 @@ class Cat:
             if type(entity) == Player:
                 return f"{self.name} is now your friend! <3"
             else:
-                return f"{entity.name} and {self.name} are now friends!"
+                return f"""{entity.name} and {self.name} are now friends!
+                      /^--^\\     /^--^\\    
+                      \\____/     \\____/  
+                     /      \\   /      \\ 
+                    |        | |        | |       
+                     \\__  __/   \\__  __/  
+                """
         return ""
 
     def play(self):
