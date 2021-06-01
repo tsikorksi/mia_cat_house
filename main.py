@@ -13,7 +13,7 @@ class Cat:
     sex = 'N'
     breed = ''
     name = ''
-    food = {"salmon": "", "cat food": "", 'chicken': "", "mouse": "", "peppers": "", "tuna": ""}
+    food = {"salmon": "", "dry food": "", 'chicken': "", "wet food": "", "peppers": "", "tuna": ""}
     friends = []
 
     def __init__(self):
@@ -36,11 +36,11 @@ class Cat:
                   ____\\_(m___m)_______"""
 
     def check_friend(self, entity):
-        if random.randint(0, 100) > 90 and entity not in self.friends:
+        if (random.randint(0, 100) > 90 or self.player_relation > 10) and entity not in self.friends:
             self.friends.append(entity)
             entity.friends.append(self)
             if type(entity) == Player:
-                return f"{entity.name} is now your friend! <3"
+                return f"{self.name} is now your friend! <3"
             else:
                 return f"{entity.name} and {self.name} are now friends!"
         return ""
@@ -65,6 +65,10 @@ class Cat:
     def eat(self):
         food, emotion = random.choice(list(self.food.items()))
         return f"{self.name} is eating {food}. I think they {emotion} it!"
+
+    def drink(self):
+        drink = ["milk", "water"]
+        return f"{self.name} is drinking {random.choice(drink)}. Ahhhh."
 
     def nap(self):
         return f"""{self.name} is taking a nap.
@@ -91,6 +95,11 @@ class Player:
         kitty.player_relation += 1
         return f"You played with {kitty.name}.\n{kitty.play_with(self)}\n{kitty.check_friend(self)}"
 
+    def bring_item(self, kitty: Cat):
+        kitty.player_relation += 1
+        items = ["piece of string", "spare treat", "quarter", "dead bug. Ew!"]
+        return f"{kitty.name} brought you a {random.choice(items)}.\n{kitty.check_friend(self)}"
+
 
 def cat_loop(duration, cats):
     count = len(cats)
@@ -99,13 +108,15 @@ def cat_loop(duration, cats):
     while timestamp < extra:
 
         rand = random.randint(0, 100)
-        if (rand < 5 or count == 0) and count < MAX_CATS:
+        if (rand < 10 or count == 0) and count < MAX_CATS:
             kitty = Cat()
             cats.append(kitty)
             print(cats[-1].birth())
             count += 1
-        elif 5 < rand < 30:
+        elif 20 < rand < 30:
             print(random.choice(cats).eat())
+        elif 30 < rand < 40:
+            print(random.choice(cats).drink())
         elif 50 < rand < 60:
             print(random.choice(cats).nap())
         else:
@@ -133,11 +144,14 @@ def main():
     print(f"Welcome to your cat house, {player.name}!")
     while True:
         cats = cat_loop(5, cats)
-        desire = input("What would you like to do? You can feed a kitty, play with one, or just watch them.\n")
+        desire = input("What would you like to do? "
+                       "You can feed a kitty, play with one, call one over or just watch them.\n")
         if desire.lower().startswith("feed"):
             print(player.feed(random.choice(cats)))
         elif desire.lower().startswith("play"):
             print(player.play_with(random.choice(cats)))
+        elif desire.lower().startswith("call"):
+            print(player.bring_item(random.choice(cats)))
         elif desire.lower().startswith("watch"):
             cats = cat_loop(10, cats)
         else:
