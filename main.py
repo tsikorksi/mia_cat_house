@@ -73,7 +73,7 @@ class Cat:
         return f"{self.name} is eating {food}. I think they {emotion} it!"
 
     def drink(self):
-        drink = ["milk", "water"]
+        drink = ["milk", "water", "formula", "bone broth", "apple juice"]
         return f"{self.name} is drinking {random.choice(drink)}. Ahhhh."
 
     def nap(self):
@@ -103,7 +103,8 @@ class Player:
 
     def bring_item(self, kitty: Cat):
         kitty.player_relation += 1
-        items = ["piece of string", "spare treat", "quarter", "dead bug. Ew!"]
+        items = ["piece of string", "spare treat", "quarter", "dead bug. Ew!", "ball", "hair tie", " piece of trash",
+                 "plushie"]
         return f"{kitty.name} brought you a {random.choice(items)}.\n{kitty.check_friend(self)}"
 
 
