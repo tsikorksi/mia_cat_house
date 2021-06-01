@@ -26,7 +26,7 @@ def cat_loop(cat_list):
     elif 30 < rand < 40:
         return random.choice(cat_list).drink()
     elif 50 < rand < 60:
-        print(random.choice(cat_list).nap())
+        return random.choice(cat_list).nap()
     else:
         kitty_a = random.choice(cat_list)
         kitty_b = random.choice(cat_list)
@@ -44,12 +44,15 @@ class Window(Frame):
         # widget can take all window
         self.pack(fill=BOTH, expand=1)
 
+        self.watch_button = Button(self, text="Watch the Cats", command=self.cat_loop)
+        self.watch_button.place(x=10, y=350)
+
         self.feed_button = Button(self, text="Feed a Cat", command=self.feed_button)
-        self.feed_button.place(x=100, y=350)
+        self.feed_button.place(x=130, y=350)
         self.play_button = Button(self, text="Play with a Cat", command=self.play_button)
-        self.play_button.place(x=210, y=350)
+        self.play_button.place(x=240, y=350)
         self.call_button = Button(self, text="Call a Cat over", command=self.call_button)
-        self.call_button.place(x=340, y=350)
+        self.call_button.place(x=370, y=350)
 
         self.action_field = Text(root, height=20, width=100)
         self.action_field.place(x=0, y=0)
@@ -65,7 +68,7 @@ class Window(Frame):
     def cat_loop(self):
         self.action_allowed = False
         text = cat_loop(cats)
-        self.update_text(text)
+        self.update_text("\n" + text)
         time.sleep(1)
         self.action_allowed = True
 
