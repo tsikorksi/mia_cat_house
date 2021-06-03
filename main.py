@@ -205,21 +205,21 @@ def cat_loop(duration, cats):
 
 
 if __name__ == '__main__':
-    cats = []
+    cat_list = []
 
     player = Player()
     print(f"Welcome to your cat house, {player.name}!")
     while True:
-        cats = cat_loop(5, cats)
+        cat_list = cat_loop(5, cat_list)
         desire = input("What would you like to do? "
                        "You can feed a kitty, play with one, call one over or just watch them.\n")
         if desire.lower().startswith("feed"):
-            print(player.feed(random.choice(cats)))
+            print(player.feed(random.choice(cat_list)))
         elif desire.lower().startswith("play"):
-            print(player.play_with(random.choice(cats)))
+            print(player.play_with(random.choice(cat_list)))
         elif desire.lower().startswith("call"):
-            print(player.bring_item(random.choice(cats)))
+            print(player.bring_item(random.choice(cat_list)))
         elif desire.lower().startswith("watch"):
-            cats = cat_loop(10, cats)
+            cat_list = cat_loop(10, cat_list)
         else:
             print("I didnt catch that. Lets watch them!")
