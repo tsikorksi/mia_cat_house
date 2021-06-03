@@ -8,6 +8,12 @@ MAX_CATS = 5
 
 
 def cat_loop(cat_list):
+    """
+    run a single instance of the cat loop, returning the appropriate random interaction
+
+    :param cat_list: the current list of cats
+    :return: will call function that will return text
+    """
     count = len(cat_list)
     # while timestamp < extra:
     for cat in cat_list:
@@ -37,6 +43,9 @@ def cat_loop(cat_list):
 
 
 class Window(Frame):
+    """
+    Window Class
+    """
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.master = master
@@ -66,6 +75,10 @@ class Window(Frame):
         self.cat_loop()
 
     def cat_loop(self):
+        """
+        Runs a single instance of cat loop, locking the buttons while it runs
+        :return: generates the text
+        """
         self.action_allowed = False
         text = cat_loop(cats)
         self.update_text("\n" + text)
@@ -73,24 +86,41 @@ class Window(Frame):
         self.action_allowed = True
 
     def feed_button(self):
+        """
+        calls feed action
+        :return: updates text box
+        """
         if self.action_allowed:
             text = player.feed(random.choice(cats))
             self.update_text(text)
             self.cat_loop()
 
     def play_button(self):
+        """
+        calls play action
+        :return:  updates text box
+        """
         if self.action_allowed:
             text = player.play_with(random.choice(cats))
             self.update_text(text)
             self.cat_loop()
 
     def call_button(self):
+        """
+        calls bring over action
+        :return: updates text box
+        """
         if self.action_allowed:
             text = player.bring_item(random.choice(cats))
             self.update_text(text)
             self.cat_loop()
 
     def update_text(self, text):
+        """
+        updates text field
+        :param text: the text to be added
+        :return: updates the text box in root
+        """
         self.action_field.insert(INSERT, text)
         self.action_field.see(END)
 
