@@ -77,6 +77,7 @@ class Window(Frame):
     def cat_loop(self):
         """
         Runs a single instance of cat loop, locking the buttons while it runs
+
         :return: generates the text
         """
         self.action_allowed = False
@@ -88,6 +89,7 @@ class Window(Frame):
     def feed_button(self):
         """
         calls feed action
+
         :return: updates text box
         """
         if self.action_allowed:
@@ -98,6 +100,7 @@ class Window(Frame):
     def play_button(self):
         """
         calls play action
+
         :return:  updates text box
         """
         if self.action_allowed:
@@ -108,6 +111,7 @@ class Window(Frame):
     def call_button(self):
         """
         calls bring over action
+
         :return: updates text box
         """
         if self.action_allowed:
@@ -118,6 +122,7 @@ class Window(Frame):
     def update_text(self, text):
         """
         updates text field
+
         :param text: the text to be added
         :return: updates the text box in root
         """

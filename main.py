@@ -32,6 +32,7 @@ class Cat:
     def birth(self):
         """
         runs each time a cat is born
+
         :return: the text for the cat
         """
         return f"{self.name} was born! They are a cute {self.breed}."
@@ -39,6 +40,7 @@ class Cat:
     def happy_birthday(self):
         """
         Runs each time the birthday is hit
+
         :return: the birthday text
         """
         self.age += 1
@@ -50,8 +52,9 @@ class Cat:
     def check_friend(self, entity):
         """
         checks to see if the cat has made a friend
+
         :param entity: the entity to check, either player or another cat
-        :return:
+        :return: the friendsip text
         """
         if (random.randint(0, 100) > 90 or self.player_relation > 10) and entity not in self.friends:
             self.friends.append(entity)
@@ -71,6 +74,7 @@ class Cat:
     def play(self):
         """
         Play alone with random item
+
         :return: the play with text
         """
         games = ["feathers", "bells", "you", 'a rubber mouse', "a cardboard box", "yarn"]
@@ -82,6 +86,7 @@ class Cat:
     def play_with(self, partner):
         """
         play with another entity
+
         :param partner: the other entity
         :return: the play text
         """
@@ -97,6 +102,7 @@ class Cat:
     def eat(self):
         """
         eat random food, working applying emotion
+
         :return: the eat text
         """
         food, emotion = random.choice(list(self.food.items()))
@@ -105,6 +111,7 @@ class Cat:
     def drink(self):
         """
         drink random drink
+
         :return: the drink text
         """
         drink = ["milk", "water", "formula", "bone broth", "apple juice"]
@@ -113,6 +120,7 @@ class Cat:
     def nap(self):
         """
         sleep kitty
+
         :return: sleep text
         """
         return f"""{self.name} is taking a nap.
@@ -134,6 +142,7 @@ class Player:
     def feed(self, kitty: Cat):
         """
         feed a cat with a random food item, check for friend
+
         :param kitty: the cat to feed
         :return: the feed text
         """
@@ -143,6 +152,7 @@ class Player:
     def play_with(self, kitty: Cat):
         """
         Play a random game with a cat
+
         :param kitty: the cat to play with
         :return: the play text
         """
@@ -152,6 +162,7 @@ class Player:
     def bring_item(self, kitty: Cat):
         """
         Bring item over interaction
+
         :param kitty: the cat to play with
         :return: the interaction text
         """
@@ -164,6 +175,7 @@ class Player:
 def cat_loop(duration, cats):
     """
     run the cat loop for the set duration, 5 seconds == 1 interaction
+
     :param duration: the set duration to loop for
     :param cats: the list of cats that can be interacted with
     :return: prints the interaction
